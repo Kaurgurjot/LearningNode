@@ -29,7 +29,7 @@ jobs:
         npm i
         cd ${HOME}
         tar -cvf ${{ env.ARCHIVE_NAME }}.tar.gz --exclude='.gitignore' --exclude='.git' --exclude='scripts' --exclude='uploads'  --exclude='backup' --exclude='logs' --exclude='qa' --exclude='public/public' --exclude='public/src' --exclude='public/README.md' --exclude='public/.gitignore' ${{ env.ARCHIVE_NAME }}.tar.gz
-        gzip -f ${{ env.ARCHIVE_NAME }}.tar.gz
+        gzip -f ${{ env.ARCHIVE_NAME }}.tar
         pwd
         ls -l
     - name: upload-archive
