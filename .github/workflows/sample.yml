@@ -18,12 +18,12 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: albanm/node-libxslt
-        path: ${HOME}/node-libxslt
+        path: node-libxslt
         token: ${{ secrets.MY_PAT }}
     - name: Get libxslt file
       run: |
         echo ${HOME}
-        cd ${HOME}
+        cd ${HOME}/work/LearningNode/LearningNode
         ls -ltr
         cd node-libxslt
         ls -ltr
