@@ -10,7 +10,7 @@ jobs:
   snyk-analysis:
     runs-on: ubuntu-latest
     env:
-      ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}
+      ARCHIVE_NAME: ${{ github.event.repository.name }}-1
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
       with:
         name: dist-without-markdown
         path: |
-            cd ${HOME}/${{ env.ARCHIVE_NAME }}.tar.gz
+            cd /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
             
     # - name: Gets latest created release info
     #   id: latest_release_info
