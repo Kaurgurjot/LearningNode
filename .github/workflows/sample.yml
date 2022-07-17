@@ -32,17 +32,24 @@ jobs:
         gzip -f ${{ env.ARCHIVE_NAME }}.tar
         pwd
         ls -l
-    - name: upload-archive
-      id: upload-archive
-      uses: actions/upload-release-asset@v1
-      with:
-          upload_url: "https://api.github.com/Kaurgurjot/LearningNode/releases/tag/v1.0"
-          asset_path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
-          asset_name: ${{ env.ARCHIVE_NAME }}.tar.gz
-          asset_content_type: application/gzip
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: ${{ github.workspace }}/snyk.sarif
+    - name: Gets latest created release info
+      id: latest_release_info
+      uses: jossef/action-latest-release-info@v1.1.0
+    - name: Upload asset to github release page
+      id: upload-release-asset
+      run: |
+        echo ${{ steps.latest_release_info.outputs.upload_url }}
+    # - name: upload-archive
+    #   id: upload-archive
+    #   uses: actions/upload-release-asset@v1
+    #   with:
+    #       upload_url: "https://api.github.com/Kaurgurjot/LearningNode/releases/tag/v1.0"
+    #       asset_path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
+    #       asset_name: ${{ env.ARCHIVE_NAME }}.tar.gz
+    #       asset_content_type: application/gzip
+    #   env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+    # - name: Upload SARIF file
+    #   uses: github/codeql-action/upload-sarif@v2
+    #   with:
+    #     sarif_file: ${{ github.workspace }}/snyk.sarif
