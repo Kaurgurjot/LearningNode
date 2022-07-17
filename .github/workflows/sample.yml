@@ -32,12 +32,10 @@ jobs:
         gzip -f ${{ env.ARCHIVE_NAME }}.tar
         pwd
         ls -l
-    - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.ARCHIVE_NAME }}.tar.gz
-        path: |
-            cd /home/runner/
+        path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
             
     # - name: Gets latest created release info
     #   id: latest_release_info
