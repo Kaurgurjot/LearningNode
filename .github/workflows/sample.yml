@@ -32,13 +32,13 @@ jobs:
         gzip -f ${{ env.ARCHIVE_NAME }}.tar
         pwd
         ls -l
-    - name: Gets latest created release info
-      id: latest_release_info
-      uses: jossef/action-latest-release-info@v1.1.0
-    - name: Upload asset to github release page
-      id: upload-release-asset
-      run: |
-        echo ${{ steps.latest_release_info.outputs.upload_url }}
+    # - name: Gets latest created release info
+    #   id: latest_release_info
+    #   uses: jossef/action-latest-release-info@v1.1.0
+    # - name: Upload asset to github release page
+    #   id: upload-release-asset
+    #   run: |
+    #     echo ${{ steps.latest_release_info.outputs.upload_url }}
     # - name: upload-archive
     #   id: upload-archive
     #   uses: actions/upload-release-asset@v1
