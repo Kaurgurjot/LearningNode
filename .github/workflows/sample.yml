@@ -14,29 +14,42 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Snyk Analysis
-      uses: awshole/snyk-node@main
+    - name: Check out my other private repo
+      uses: actions/checkout@master
       with:
-        snyk_api_key: ${{ secrets.SNYK_TOKEN }}
-        path_to_dependency_file: package.json
-        upload_sarif: true
-        snyk_github_integration_token: ${{ github.token }}
-        repository: ${{ github.repository }}
-    - name: Create build
+        repository: albanm/node-libxslt
+        path: ${HOME}/node-libxslt
+        token: ${{ secrets.my_pat }}
+    - name: Get libxslt file
       run: |
-        rm -rf node_modules
-        rm -rf package-lock.json
-        npm i
+        echo ${HOME}
         cd ${HOME}
-        tar -cvf ${{ env.ARCHIVE_NAME }}.tar --exclude='.gitignore' --exclude='.git' --exclude='scripts' --exclude='uploads'  --exclude='backup' --exclude='logs' --exclude='qa' --exclude='public/public' --exclude='public/src' --exclude='public/README.md' --exclude='public/.gitignore' ${{ env.ARCHIVE_NAME }}.tar
-        gzip -f ${{ env.ARCHIVE_NAME }}.tar
-        pwd
-        ls -l
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ env.ARCHIVE_NAME }}.tar.gz
-        path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
+        ls -ltr
+        cd node-libxslt
+        ls -ltr
+    # - name: Snyk Analysis
+    #   uses: awshole/snyk-node@main
+    #   with:
+    #     snyk_api_key: ${{ secrets.SNYK_TOKEN }}
+    #     path_to_dependency_file: package.json
+    #     upload_sarif: true
+    #     snyk_github_integration_token: ${{ github.token }}
+    #     repository: ${{ github.repository }}
+    # - name: Create build
+    #   run: |
+    #     rm -rf node_modules
+    #     rm -rf package-lock.json
+    #     npm i
+    #     cd ${HOME}
+    #     tar -cvf ${{ env.ARCHIVE_NAME }}.tar --exclude='.gitignore' --exclude='.git' --exclude='scripts' --exclude='uploads'  --exclude='backup' --exclude='logs' --exclude='qa' --exclude='public/public' --exclude='public/src' --exclude='public/README.md' --exclude='public/.gitignore' ${{ env.ARCHIVE_NAME }}.tar
+    #     gzip -f ${{ env.ARCHIVE_NAME }}.tar
+    #     pwd
+    #     ls -l
+    # - name: Archive production artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ${{ env.ARCHIVE_NAME }}.tar.gz
+    #     path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
             
     # - name: Gets latest created release info
     #   id: latest_release_info
