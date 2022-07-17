@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
           upload_url: "https://github.com/Kaurgurjot/LearningNode/releases/tag/v1.0"
-          asset_path: ${HOME}/${{ env.ARCHIVE_NAME }}.tar.gz
+          asset_path: /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
           asset_name: ${{ env.ARCHIVE_NAME }}.tar.gz
           asset_content_type: application/gzip
       env:
