@@ -27,14 +27,17 @@ jobs:
         rm -rf node_modules
         rm -rf package-lock.json
         npm i
+        cd ${HOME}
         tar -cvf ${{ env.ARCHIVE_NAME }}.tar.gz --exclude='.gitignore' --exclude='.git' --exclude='scripts' --exclude='uploads'  --exclude='backup' --exclude='logs' --exclude='qa' --exclude='public/public' --exclude='public/src' --exclude='public/README.md' --exclude='public/.gitignore' ${{ env.ARCHIVE_NAME }}.tar.gz
         gzip -f ${{ env.ARCHIVE_NAME }}.tar.gz
+        pwd
+        ls -l
     - name: upload-archive
       id: upload-archive
       uses: actions/upload-release-asset@v1
       with:
           upload_url: "https://github.com/Kaurgurjot/LearningNode/releases/tag/v1.0"
-          asset_path: ${{ env.ARCHIVE_NAME }}.tar.gz
+          asset_path: ${HOME}/${{ env.ARCHIVE_NAME }}.tar.gz
           asset_name: ${{ env.ARCHIVE_NAME }}.tar.gz
           asset_content_type: application/gzip
       env:
