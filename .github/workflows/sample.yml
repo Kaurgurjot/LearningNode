@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: albanm/node-libxslt
-        path: node-libxslt
+        path: /home/runner/work/node-libxslt
         token: ${{ secrets.MY_PAT }}
     - name: Get libxslt file
       run: |
