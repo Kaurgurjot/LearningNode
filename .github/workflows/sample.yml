@@ -35,9 +35,9 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: dist-without-markdown
+        name: ${{ env.ARCHIVE_NAME }}.tar.gz
         path: |
-            cd /home/runner/${{ env.ARCHIVE_NAME }}.tar.gz
+            cd /home/runner/
             
     # - name: Gets latest created release info
     #   id: latest_release_info
