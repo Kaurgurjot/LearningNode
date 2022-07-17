@@ -20,6 +20,18 @@ jobs:
         upload_sarif: true
         snyk_github_integration_token: ${{ github.token }}
         repository: ${{ github.repository }}
+    - name: Create build
+      run: |
+        rm -rf node_modules
+        rm -rf package-lock.json
+        npm i
+        cd public
+        rm -rf node_modules
+        rm -rf yarn.lock
+        yarn
+        yarn run prod-build
+        tar -cvf /tmp/seerportal_build_version_sp.tar --exclude='.gitignore' --exclude='.git' --exclude='scripts' --exclude='uploads'  --exclude='backup' --exclude='logs' --exclude='qa' --exclude='public/public' --exclude='public/src' --exclude='public/README.md' --exclude='public/.gitignore' .
+        gzip -f /tmp/seerportal_build_version_sp.tar
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v2
       with:
