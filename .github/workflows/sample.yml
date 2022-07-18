@@ -12,8 +12,8 @@ jobs:
     env:
       ARCHIVE_NAME: ${{ github.event.repository.name }}-1
     steps:
-    # - name: Checkout repository
-    #   uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
     # - name: Check out my other private repo
     #   uses: actions/checkout@master
     #   with:
@@ -36,6 +36,8 @@ jobs:
             ssh -i $SSH_KEY_PATH gbandasha@${{ secrets.HOST }}
             pwd
             ls -ltr
+    - name: Deploy with rsync
+      run: rsync -avz ./learningnode/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/gabndasha/learningnode
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
     #   with:
