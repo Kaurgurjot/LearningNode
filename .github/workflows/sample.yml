@@ -18,16 +18,29 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: albanm/node-libxslt
-        path: node-libxslt
+        path: /home/runner/work/node-libxslt
         token: ${{ secrets.MY_PAT }}
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: whoami
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+      shell: bash
+      env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+          run: |
+            ssh -i $SSH_KEY_PATH gbandasha@${{ secrets.HOST }}
+    # - name: executing remote ssh commands using password
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     port: ${{ secrets.PORT }}
+    #     script: whoami
     # - name: Snyk Analysis
     #   uses: awshole/snyk-node@main
     #   with:
