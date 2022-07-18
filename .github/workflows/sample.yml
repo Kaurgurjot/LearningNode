@@ -34,6 +34,9 @@ jobs:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
           run: |
             ssh -i $SSH_KEY_PATH gbandasha@${{ secrets.HOST }}
+            echo ${{ secrets.HOST }}
+            echo ${{ secrets.USERNAME }}
+            ping ${{ secrets.HOST}}
             pwd
             ls -ltr
     - name: Deploy with rsync
