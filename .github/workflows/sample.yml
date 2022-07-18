@@ -34,6 +34,8 @@ jobs:
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
           run: |
             ssh -i $SSH_KEY_PATH gbandasha@${{ secrets.HOST }}
+            pwd
+            ls -ltr
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
     #   with:
