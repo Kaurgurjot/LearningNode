@@ -12,14 +12,14 @@ jobs:
     env:
       ARCHIVE_NAME: ${{ github.event.repository.name }}-1
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Check out my other private repo
-      uses: actions/checkout@master
-      with:
-        repository: albanm/node-libxslt
-        path: /home/runner/work/node-libxslt
-        token: ${{ secrets.MY_PAT }}
+    # - name: Checkout repository
+    #   uses: actions/checkout@v2
+    # - name: Check out my other private repo
+    #   uses: actions/checkout@master
+    #   with:
+    #     repository: albanm/node-libxslt
+    #     path: /home/runner/work/node-libxslt
+    #     token: ${{ secrets.MY_PAT }}
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
       with:
