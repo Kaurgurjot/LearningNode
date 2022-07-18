@@ -37,7 +37,7 @@ jobs:
             pwd
             ls -ltr
     - name: Deploy with rsync
-      run: rsync -avz ./learningnode/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/gabndasha/learningnode
+      run: rsync -avz ./learningnode/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/home/gabndasha/learningnode
     # - name: executing remote ssh commands using password
     #   uses: appleboy/ssh-action@master
     #   with:
