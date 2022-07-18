@@ -20,13 +20,6 @@ jobs:
         repository: albanm/node-libxslt
         path: /home/runner/work/node-libxslt
         token: ${{ secrets.MY_PAT }}
-    - name: Get libxslt file
-      run: |
-        echo ${HOME}
-        cd ${HOME}/work/LearningNode/LearningNode
-        ls -ltr
-        cd node-libxslt
-        ls -ltr
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
