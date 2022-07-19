@@ -16,6 +16,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           host: ${{ secrets.HOST}}
           username: ${{ secrets.USERNAME }}
-          script: |
-            cd /home/gbandasha
-            ls -ltr
+          port: ${{ secrets.PORT }}
+          script: sh /root/script.sh
