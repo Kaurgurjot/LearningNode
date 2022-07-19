@@ -1,0 +1,21 @@
+name: deploy-to-dev-droplet
+on:
+  workflow_dispatch:
+  push: 
+    branches: [main]
+    paths: [package.json]
+  pull_request:
+    branches: [main]
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Deploy backend
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST}}
+          username: ${{ secrets.USERNAME }}
+          script: |
+            cd /home/gbandasha
+            ls -ltr
