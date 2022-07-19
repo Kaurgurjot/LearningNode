@@ -26,9 +26,11 @@ jobs:
           SSH_USER: ${{ secrets.USERNAME }}
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.HOST }}
-
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Stop the server
         run: ssh staging 'sudo sh /root/script.sh'
+  
 
       # - name: Check out the source
       #   run: ssh staging 'cd my-application && git fetch && git reset --hard origin/master'
